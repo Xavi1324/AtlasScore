@@ -1,0 +1,57 @@
+﻿@model IndicadorPorPaisViewModel
+@{
+    ViewData["Title"] = "Editar Indicador";
+}
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+    <form asp-action="Edit" method="post">
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <div>@error.ErrorMessage</div>
+                }
+            </div>
+        }
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="PaisId" />
+        <input type="hidden" asp-for="MacroindicadorId" />
+        <input type="hidden" asp-for="Año" />
+
+        <div class="mb-3">
+            <label asp-for="PaisId" class="form-label"></label>
+            <select asp-for="PaisId" class="form-select" disabled>
+                @foreach (var pais in ViewBag.Paises)
+                {
+                    <option value="@pais.Id" selected="@(pais.Id == Model.PaisId ? "selected" : null)">@pais.Nombre</option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="MacroindicadorId" class="form-label"></label>
+            <select asp-for="MacroindicadorId" class="form-select" disabled>
+                @foreach (var macro in ViewBag.Macroindicadores)
+                {
+                    <option value="@macro.Id" selected="@(macro.Id == Model.MacroindicadorId ? "selected" : null)">@macro.Nombre</option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Año" class="form-label"></label>
+            <input asp-for="Año" class="form-control" disabled />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Valor" class="form-label"></label>
+            <input asp-for="Valor" class="form-control" />
+            <span asp-validation-for="Valor" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+

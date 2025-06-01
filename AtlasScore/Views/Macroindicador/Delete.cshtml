@@ -1,0 +1,18 @@
+﻿@model MacroindicadorViewModel
+@{
+    ViewData["Title"] = "Eliminar Macroindicador";
+}
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+    <h5>¿Estás seguro que deseas eliminar el siguiente macroindicador?</h5>
+    <div class="mb-3">
+        <strong>Nombre:</strong> @Model.Nombre<br />
+        <strong>Peso:</strong> @Model.Peso<br />
+        <strong>¿Es Mejor Más Alto?:</strong> @(Model.EsMejorMasAlto ? "Sí" : "No")
+    </div>
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

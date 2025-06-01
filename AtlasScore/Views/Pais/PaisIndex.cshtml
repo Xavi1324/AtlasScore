@@ -1,0 +1,41 @@
+﻿@model List<PaisViewModel>
+
+@{
+    ViewData["Title"] = "Países";   
+}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Lista de Países</h2>
+        <a class="btn btn-primary" asp-action="Create">Crear País</a>
+    </div>
+    @if (Model.Any())
+    {
+        <table class="table table-bordered table-striped">
+            <thead class="table-light">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Código ISO</th>
+                    <th style="width: 150px;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pais in Model)
+                {
+                    <tr>
+                        <td>@pais.Nombre</td>
+                        <td>@pais.CodigoIso</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@pais.Id" class="btn btn-sm btn-warning me-1">Editar</a>
+                            <a asp-action="Delete" asp-route-id="@pais.Id" class="btn btn-sm btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No hay países registrados.</p>
+    }
+
+</div>

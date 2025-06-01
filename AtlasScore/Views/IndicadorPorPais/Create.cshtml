@@ -1,0 +1,45 @@
+﻿@model IndicadorPorPaisViewModel
+@{
+    ViewData["Title"] = "Nuevo Indicador";
+}
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+    <form asp-action="Create" method="post">
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <div>@error.ErrorMessage</div>
+                }
+            </div>
+        }
+       
+        <div class="mb-3">
+            <label asp-for="PaisId" class="form-label"></label>
+            <select asp-for="PaisId" class="form-select" asp-items="@(new SelectList(ViewBag.Paises, "Id", "Nombre"))"></select>
+            <span asp-validation-for="PaisId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="MacroindicadorId" class="form-label"></label>
+            <select asp-for="MacroindicadorId" class="form-select" asp-items="@(new SelectList(ViewBag.Macroindicadores, "Id", "Nombre"))"></select>
+            <span asp-validation-for="MacroindicadorId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Año" class="form-label"></label>
+            <input asp-for="Año" class="form-control" />
+            <span asp-validation-for="Año" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Valor" class="form-label"></label>
+            <input asp-for="Valor" class="form-control" />
+            <span asp-validation-for="Valor" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

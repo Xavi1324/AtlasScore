@@ -1,7 +1,21 @@
+using Application.Interfaces.IServices;
+using Application.Services;
+using Persistence;
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddPersitence(builder.Configuration);
+
+builder.Services.AddScoped<IPaisService, PaisService>();
+builder.Services.AddScoped<IMacroindicadorService, MacroindicadorService>();
+builder.Services.AddScoped<IIndicadorPorPaisService, IndicadorPorPaisService>();
+
+
+
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 
 var app = builder.Build();
 

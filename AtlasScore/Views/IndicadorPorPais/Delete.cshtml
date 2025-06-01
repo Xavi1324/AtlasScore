@@ -1,0 +1,23 @@
+﻿@model IndicadorPorPaisViewModel
+@{
+    ViewData["Title"] = "Eliminar Indicador";
+}
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+    <p>¿Estás seguro que deseas eliminar este indicador por país?</p>
+    <dl class="row">
+        <dt class="col-sm-3">País </dt>
+        <dd class="col-sm-9">@Model.NombrePais</dd>
+        <dt class="col-sm-3">Macroindicador </dt>
+        <dd class="col-sm-9">@Model.NombreMacroindicador</dd>
+        <dt class="col-sm-3">Año</dt>
+        <dd class="col-sm-9">@Model.Año</dd>
+        <dt class="col-sm-3">Valor</dt>
+        <dd class="col-sm-9">@Model.Valor</dd>
+    </dl>
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

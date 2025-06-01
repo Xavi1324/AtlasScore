@@ -1,11 +1,19 @@
 is_global = true
 build_property.TargetFramework = net9.0
+build_property.TargetFramework = net9.0
+build_property.TargetPlatformMinVersion = 
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AtlasScore
 build_property.RootNamespace = AtlasScore
@@ -24,8 +32,52 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Proyecto/AtlasScore/AtlasScore/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[C:/Proyecto/AtlasScore/AtlasScore/Views/IndicadorPorPais/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5kaWNhZG9yUG9yUGFpc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Proyecto/AtlasScore/AtlasScore/Views/IndicadorPorPais/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5kaWNhZG9yUG9yUGFpc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Proyecto/AtlasScore/AtlasScore/Views/IndicadorPorPais/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5kaWNhZG9yUG9yUGFpc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Proyecto/AtlasScore/AtlasScore/Views/IndicadorPorPais/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5kaWNhZG9yUG9yUGFpc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Proyecto/AtlasScore/AtlasScore/Views/Macroindicador/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFjcm9pbmRpY2Fkb3JcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Proyecto/AtlasScore/AtlasScore/Views/Macroindicador/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFjcm9pbmRpY2Fkb3JcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Proyecto/AtlasScore/AtlasScore/Views/Macroindicador/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFjcm9pbmRpY2Fkb3JcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Proyecto/AtlasScore/AtlasScore/Views/Macroindicador/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFjcm9pbmRpY2Fkb3JcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Proyecto/AtlasScore/AtlasScore/Views/Pais/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFpc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Proyecto/AtlasScore/AtlasScore/Views/Pais/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFpc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Proyecto/AtlasScore/AtlasScore/Views/Pais/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFpc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Proyecto/AtlasScore/AtlasScore/Views/Pais/PaisIndex.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFpc1xQYWlzSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Proyecto/AtlasScore/AtlasScore/Views/Shared/Error.cshtml]

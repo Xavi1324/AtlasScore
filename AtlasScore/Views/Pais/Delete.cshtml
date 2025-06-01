@@ -1,0 +1,26 @@
+﻿@using Application.ViewModels.Pais
+@model PaisViewModel
+@{
+    ViewData["Title"] = "Eliminar País";
+}
+
+<div class="container mt-4"> 
+    <h2>¿Estás seguro de que deseas eliminar este país?</h2>
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input class="form-control" asp-for="Nombre" disabled />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Código ISO</label>
+            <input class="form-control" asp-for="CodigoIso" disabled />
+        </div>
+
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a asp-action="PaisIndex" class="btn btn-secondary ms-2">Cancelar</a>
+    </form>
+
+</div>

@@ -1,0 +1,27 @@
+﻿@using Application.ViewModels.Pais
+@model PaisViewModel
+@{
+    ViewData["Title"] = "Editar País";
+}
+<div class="container mt-4"> 
+    <h2>Editar País</h2> 
+    <form asp-action="Edit" method="post" class="mt-3">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="Nombre" class="form-label"></label>
+            <input asp-for="Nombre" class="form-control" />
+            <span asp-validation-for="Nombre" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CodigoIso" class="form-label"></label>
+            <input asp-for="CodigoIso" class="form-control" />
+            <span asp-validation-for="CodigoIso" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a asp-action="PaisIndex" class="btn btn-secondary ms-2">Cancelar</a>
+    </form>
+</div>
+

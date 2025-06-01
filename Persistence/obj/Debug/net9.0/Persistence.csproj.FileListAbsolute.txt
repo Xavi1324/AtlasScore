@@ -1,0 +1,13 @@
+C:\Proyecto\AtlasScore\Persistence\bin\Debug\net9.0\Persistence.deps.json
+C:\Proyecto\AtlasScore\Persistence\bin\Debug\net9.0\Persistence.dll
+C:\Proyecto\AtlasScore\Persistence\bin\Debug\net9.0\Persistence.pdb
+C:\Proyecto\AtlasScore\Persistence\obj\Debug\net9.0\Persistence.csproj.AssemblyReference.cache
+C:\Proyecto\AtlasScore\Persistence\obj\Debug\net9.0\Persistence.GeneratedMSBuildEditorConfig.editorconfig
+C:\Proyecto\AtlasScore\Persistence\obj\Debug\net9.0\Persistence.AssemblyInfoInputs.cache
+C:\Proyecto\AtlasScore\Persistence\obj\Debug\net9.0\Persistence.AssemblyInfo.cs
+C:\Proyecto\AtlasScore\Persistence\obj\Debug\net9.0\Persistence.csproj.CoreCompileInputs.cache
+C:\Proyecto\AtlasScore\Persistence\obj\Debug\net9.0\Persistence.sourcelink.json
+C:\Proyecto\AtlasScore\Persistence\obj\Debug\net9.0\Persistence.dll
+C:\Proyecto\AtlasScore\Persistence\obj\Debug\net9.0\refint\Persistence.dll
+C:\Proyecto\AtlasScore\Persistence\obj\Debug\net9.0\Persistence.pdb
+C:\Proyecto\AtlasScore\Persistence\obj\Debug\net9.0\ref\Persistence.dll

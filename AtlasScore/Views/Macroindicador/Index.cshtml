@@ -1,0 +1,41 @@
+﻿@model List<MacroindicadorViewModel>
+@{
+    ViewData["Title"] = "Macroindicadores";
+}
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+    @if ((bool)ViewBag.CreacionPermitida)
+    {
+        <a asp-action="Create" class="btn btn-primary mb-3">Agregar Macroindicador</a>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            Ya no puedes agregar más macroindicadores. La suma total de los pesos es 1.
+        </div>
+    }
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>Nombre</th>
+                <th>Peso</th>
+                <th>¿Es Mejor Más Alto?</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td>@item.Peso</td>
+                    <td>@(item.EsMejorMasAlto ? "Sí" : "No")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,61 @@
+﻿@model List<IndicadorPorPaisViewModel>
+@{
+    ViewData["Title"] = "Indicadores por País";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>@ViewData["Title"]</h2>
+        <a asp-action="Create" class="btn btn-success">Nuevo Indicador</a>
+    </div>
+
+    <form method="get" class="row mb-3">
+        <div class="col-md-4">
+            <label for="paisID">Filtrar por País</label>
+            <select id="paisID" name="paisID" class="form-select">
+                <option value="">Todos</option>
+                @foreach (var pais in ViewBag.Paises)
+                {
+                    var selected = (int?)ViewBag.SelectedPaisId == pais.Id ? "selected" : "";
+                    <option value="@pais.Id" selected="@selected">@pais.Nombre</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <label for="año">Año (opcional)</label>
+            <input type="number" id="año" name="año" class="form-control" value="@(ViewBag.SelectedAño ?? "")" />
+        </div>
+
+        <div class="col-md-4 align-self-end">
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </div>
+    </form>
+
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>País</th>
+                <th>Macroindicador</th>
+                <th>Año</th>
+                <th>Valor</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.NombrePais</td>
+                    <td>@item.NombreMacroindicador</td>
+                    <td>@item.Año</td>
+                    <td>@item.Valor</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
