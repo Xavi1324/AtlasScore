@@ -1,4 +1,5 @@
-﻿using Application.ViewModels.IndicadorPorPais;
+﻿using Application.Dtos.IndicadorPorPais;
+using Application.ViewModels.IndicadorPorPais;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Application.Interfaces.IServices
         Task CreateAsync(IndicadorPorPaisDto dto);
         Task UpdateAsync(IndicadorPorPaisDto dto);
         Task DeleteAsync(int id);
-        Task<bool> ExisteDuplicadoAsync(int macroindicadorId, int año, int? idExcluir = null);
+        Task<bool> ExisteDuplicadoAsync(int paisId,int macroindicadorId, int año, int? idExcluir = null);
         Task<List<IndicadorPorPaisDto>> FiltrarAsync(int? paisId, int? año);
 
 

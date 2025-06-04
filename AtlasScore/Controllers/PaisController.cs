@@ -3,6 +3,7 @@ using Application.Interfaces.IServices;
 using Application.ViewModels.Pais;
 using Microsoft.AspNetCore.Mvc;
 using Persistence.Entities;
+using Application.Dtos.Pais;
 
 namespace AtlasScore.Controllers
 {

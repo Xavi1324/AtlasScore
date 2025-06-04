@@ -88,6 +88,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Proyecto/AtlasScore/AtlasScore/Views/Simulador/Simulacion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2ltdWxhZG9yXFNpbXVsYWNpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Proyecto/AtlasScore/AtlasScore/Views/TasaRetorno/Configuracion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFzYVJldG9ybm9cQ29uZmlndXJhY2lvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Proyecto/AtlasScore/AtlasScore/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

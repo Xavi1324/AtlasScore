@@ -14,7 +14,7 @@ namespace Application.ViewModels.IndicadorPorPais
         public int MacroindicadorId { get; set; }
 
         [Required(ErrorMessage = "El año es obligatorio.")]
-        [Range(1900, 2100, ErrorMessage = "El año debe ser valido")]
+        [Range(1900, 2030, ErrorMessage = "El año debe ser valido")]
         public int Año { get; set; }
 
         [Required(ErrorMessage = "El valor es obligatorio.")]

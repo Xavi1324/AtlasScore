@@ -13,7 +13,7 @@
         </div>
         <div class="mb-3">
             <label asp-for="Peso" class="form-label"></label>
-            <input asp-for="Peso" class="form-control" />
+            <input asp-for="Peso" class="form-control" step="0.1" />
             <span asp-validation-for="Peso" class="text-danger"></span>
         </div>
         <div class="form-check mb-3">
@@ -23,5 +23,6 @@
         <button type="submit" class="btn btn-primary">Actualizar</button>
         <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
     </form>
+    
 </div>
 

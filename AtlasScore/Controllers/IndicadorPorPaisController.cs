@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.IServices;
+﻿using Application.Dtos.IndicadorPorPais;
+using Application.Interfaces.IServices;
 using Application.ViewModels.IndicadorPorPais;
 using Microsoft.AspNetCore.Mvc;
 
@@ -57,7 +58,7 @@ namespace AtlasScore.Controllers
                 return View(vm);
             }
 
-            var duplicado = await _service.ExisteDuplicadoAsync(vm.MacroindicadorId, vm.Año);
+            var duplicado = await _service.ExisteDuplicadoAsync(vm.PaisId ,vm.MacroindicadorId, vm.Año);
 
             if (duplicado)
             {
@@ -76,6 +77,8 @@ namespace AtlasScore.Controllers
                 Valor = vm.Valor
             };
             await _service.CreateAsync(dto);
+            TempData["Success"] = "Indicador guardado correctamente.";
+
             return RedirectToAction(nameof(Index));
         }
         public async Task<IActionResult> Edit(int id)
@@ -105,7 +108,7 @@ namespace AtlasScore.Controllers
                 ViewBag.Macroindicadores = await _macroindicadorService.GetAllAsync();
                 return View(vm);
             }
-            var duplicado = await _service.ExisteDuplicadoAsync(vm.MacroindicadorId, vm.Año, id);
+            var duplicado = await _service.ExisteDuplicadoAsync(vm.PaisId ,vm.MacroindicadorId, vm.Año, id);
 
             if (duplicado)
             {
@@ -123,6 +126,8 @@ namespace AtlasScore.Controllers
                 Valor = vm.Valor
             };
             await _service.UpdateAsync(dto);
+            TempData["Success"] = "Indicador actualizado correctamente.";
+
             return RedirectToAction(nameof(Index));
         }
         public async Task<IActionResult> Delete(int id)
@@ -150,6 +155,7 @@ namespace AtlasScore.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await _service.DeleteAsync(id);
+            TempData["Success"] = "Indicador eliminado correctamente.";
             return RedirectToAction(nameof(Index));
         }
     }

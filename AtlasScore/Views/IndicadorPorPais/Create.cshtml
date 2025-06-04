@@ -42,4 +42,10 @@
         <button type="submit" class="btn btn-primary">Guardar</button>
         <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
     </form>
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+
 </div>

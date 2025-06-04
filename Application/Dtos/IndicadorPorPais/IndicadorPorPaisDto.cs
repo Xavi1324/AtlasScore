@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.ViewModels.IndicadorPorPais
+namespace Application.Dtos.IndicadorPorPais
 {
     public class IndicadorPorPaisDto
     {

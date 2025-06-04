@@ -1,4 +1,4 @@
-﻿using Application.ViewModels.Pais;
+﻿using Application.Dtos.Pais;
 using System;
 using System.Collections.Generic;
 using System.Linq;

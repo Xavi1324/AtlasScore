@@ -1,4 +1,4 @@
-﻿using Application.ViewModels.Pais;
+﻿using Application.Dtos.Pais;
 using Application.Interfaces.IServices;
 using Persistence.Entities;
 using Persistence.Interfaces.IRepositories;
@@ -8,7 +8,7 @@ namespace Application.Services
     public class PaisService : IPaisService
     {
         private readonly IGenericRepository<Pais> _repository;
-
+        
         public PaisService(IGenericRepository<Pais> repository)
         {
             _repository = repository;

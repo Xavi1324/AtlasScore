@@ -1,12 +1,7 @@
-﻿using Application.Interfaces.IServices;
-using Application.ViewModels.IndicadorPorPais;
+﻿using Application.Dtos.IndicadorPorPais;
+using Application.Interfaces.IServices;
 using Persistence.Entities;
 using Persistence.Interfaces.IRepositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services
 {
@@ -85,10 +80,11 @@ namespace Application.Services
 
             await _repository.EditAsync(entity);
         }
-        public async Task<bool> ExisteDuplicadoAsync(int macroId, int año, int? excluirId = null)
+        public async Task<bool> ExisteDuplicadoAsync(int paisId, int macroId, int año, int? excluirId = null)
         {
             var lista = await _repository.GetAllAsync();
             return lista.Any(x =>
+                x.PaisId == paisId &&
                 x.MacroindicadorId == macroId &&
                 x.Año == año &&
                 (!excluirId.HasValue || x.Id != excluirId));

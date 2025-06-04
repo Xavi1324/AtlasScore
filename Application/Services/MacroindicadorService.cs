@@ -1,12 +1,7 @@
-﻿using Application.ViewModels.Macroindicador;
+﻿using Application.Dtos.Macroindicador;
 using Application.Interfaces.IServices;
 using Persistence.Entities;
 using Persistence.Interfaces.IRepositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services
 {

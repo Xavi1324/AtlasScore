@@ -4,7 +4,7 @@
     ViewData["Title"] = "Editar País";
 }
 <div class="container mt-4"> 
-    <h2>Editar País</h2> 
+    <h2 class="mb-3">@ViewData["Title"]</h2>
     <form asp-action="Edit" method="post" class="mt-3">
         <input type="hidden" asp-for="Id" />
 

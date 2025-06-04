@@ -1,7 +1,7 @@
-﻿using Application.ViewModels.Macroindicador;
+﻿using Application.Dtos.Macroindicador;
 using Application.Interfaces.IServices;
-using Application.ViewModels.Macroindicador;
 using Microsoft.AspNetCore.Mvc;
+using Application.ViewModels.Macroindicador;
 
 namespace AtlasScore.Controllers
 {
@@ -54,6 +54,7 @@ namespace AtlasScore.Controllers
             };
 
             await _service.CreateAsync(dto);
+            TempData["Success"] = "Macroindicador creado correctamente.";
             return RedirectToAction(nameof(Index));
         }
 
@@ -95,6 +96,7 @@ namespace AtlasScore.Controllers
             };
 
             await _service.UpdateAsync(dto);
+            TempData["Success"] = "Macroindicador actualizado correctamente.";
             return RedirectToAction(nameof(Index));
         }
 
@@ -119,6 +121,7 @@ namespace AtlasScore.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await _service.DeleteAsync(id);
+            TempData["Success"] = "Macroindicador eliminado  correctamente.";
             return RedirectToAction(nameof(Index));
         }
     }

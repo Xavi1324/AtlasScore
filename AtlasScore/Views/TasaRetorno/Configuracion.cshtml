@@ -1,0 +1,60 @@
+﻿@model TasaRetornoViewModel
+
+@{
+    ViewData["Title"] = "Configuración de Tasa de Retorno";
+    var successMessage = TempData["SuccessMessage"] as string;
+    var errorMessage = TempData["ErrorMessage"] as string;
+}
+<div class="container mt-4">
+    <h2 class="mb-3">@ViewData["Title"]</h2>
+    @if (!string.IsNullOrEmpty(successMessage))
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @successMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @errorMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Tasa guardada actualmente</h5>
+            <p class="card-text">
+                <strong>Tasa mínima:</strong> @Model.TasaMinima <br />
+                <strong>Tasa máxima:</strong> @Model.TasaMaxima
+            </p>
+        </div>
+    </div>
+
+    <form asp-action="Configuracion" method="post">
+        
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="TasaMinima" class="form-label"></label>
+            <input asp-for="TasaMinima" class="form-control" step="0.1" />
+            <span asp-validation-for="TasaMinima" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="TasaMaxima" class="form-label"></label>
+            <input asp-for="TasaMaxima" class="form-control" step="0.1" />
+            <span asp-validation-for="TasaMaxima" class="text-danger"></span>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Volver</a>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
+   
+</div>
