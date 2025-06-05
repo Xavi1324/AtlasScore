@@ -1,20 +1,10 @@
 ﻿using Application.Dtos.Pais;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Application.Interfaces.IServices.Common;
 
 namespace Application.Interfaces.IServices
 {
-    public interface IPaisService
+    public interface IPaisService : IBaseServices<PaisDto>
     {
-        Task<List<PaisDto>> GetAllAsync();
-        Task<PaisDto?> GetByIdAsync(int id);
-        Task CreateAsync(PaisDto dto);
-        Task UpdateAsync(PaisDto dto);
-        Task DeleteAsync(int id);
-
 
     }
 }

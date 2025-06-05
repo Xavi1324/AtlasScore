@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AtlasScore")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+612924caf5b6d4bd7c597d8ef3942ece886ce0a5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+af966f962842bcd1893a34baaebb3691f7629f63")]
 [assembly: System.Reflection.AssemblyProductAttribute("AtlasScore")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AtlasScore")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
