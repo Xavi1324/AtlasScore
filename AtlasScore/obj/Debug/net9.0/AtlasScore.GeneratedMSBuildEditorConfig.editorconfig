@@ -88,8 +88,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Proyecto/AtlasScore/AtlasScore/Views/Simulador/Simulacion.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2ltdWxhZG9yXFNpbXVsYWNpb24uY3NodG1s
+[C:/Proyecto/AtlasScore/AtlasScore/Views/Simulador/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2ltdWxhZG9yXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Proyecto/AtlasScore/AtlasScore/Views/Simulador/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2ltdWxhZG9yXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Proyecto/AtlasScore/AtlasScore/Views/Simulador/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2ltdWxhZG9yXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Proyecto/AtlasScore/AtlasScore/Views/Simulador/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2ltdWxhZG9yXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Proyecto/AtlasScore/AtlasScore/Views/TasaRetorno/Configuracion.cshtml]

@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Application.ViewModels.Simulador
 {
-    public class ResultadoSimuladoViewModel
+    public class SimulacionResultadoViewModel
     {
+        public int PaisId { get; set; }
         public string Pais { get; set; } = string.Empty;
+        public string CodigoIso { get; set; } = string.Empty;
         public decimal Scoring { get; set; }
         public decimal TasaEstimacion { get; set; }
     }

@@ -12,6 +12,9 @@ builder.Services.AddScoped<IPaisService, PaisService>();
 builder.Services.AddScoped<IMacroindicadorService, MacroindicadorService>();
 builder.Services.AddScoped<IIndicadorPorPaisService, IndicadorPorPaisService>();
 builder.Services.AddScoped<ITasaRetornoService, TasaRetornoService>();
+builder.Services.AddScoped<ISimulacionMacroindicadorService, SimulacionMacroindicadorService>();
+builder.Services.AddScoped<RankingCalculator>();
+builder.Services.AddScoped<IRankingRealService, RankingRealService>();
 
 
 

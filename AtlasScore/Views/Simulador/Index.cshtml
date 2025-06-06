@@ -1,0 +1,111 @@
+﻿@model SimulacionIndexViewModel
+@{
+    ViewData["Title"] = "Simulador de Ranking";
+}
+
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+
+    @* Mensajes generales (éxito/ error al agregar/editar/eliminar) *@
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    @* ----------------------------------------------------------- *@
+    <h4>Macros en la simulación</h4>
+    <p>Suma de pesos: @Model.SumaPesos.ToString("0.00")</p>
+    @if (Model.SumaPesos < 1.0M)
+    {
+
+        <a asp-action="Create" class="btn btn-primary mb-3">Agregar Macroindicador Simulados</a>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            Ya no puedes agregar más macroindicadores. La suma total de los pesos es 1.
+        </div>
+    } 
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Macroindicador</th>
+                <th>Peso</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var macro in Model.Macroindicadores)
+            {
+                <tr>
+                    <td>@macro.Nombre</td>
+                    <td>@macro.Peso.ToString("0.###")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@macro.Id" class="btn btn-warning btn-sm">Editar</a>
+                        <a asp-action="Delete" asp-route-id="@macro.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @* ----------------------------------------------------------- *@
+    <h4>Simular Ranking</h4>
+    <form asp-action="SimularRanking" method="post" class="mb-4">
+        <div class="row align-items-end">
+            <div class="col-md-4">
+                <label asp-for="AñoSeleccionado" class="form-label">Año</label>
+                <select asp-for="AñoSeleccionado" class="form-select">
+                    @foreach (var a in Model.AñosDisponibles)
+                    {
+                        <option value="@a.Año">@a.Año</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-success">Simular Ranking</button>
+            </div>
+        </div>
+        
+
+    </form>
+
+    @* Mostrar error de simulación si existe *@
+    @if (!string.IsNullOrEmpty(Model.MensajeError))
+    {
+        <div class="alert alert-warning">
+            @Model.MensajeError
+            @* Si contiene "único país", pongo enlace a mantenimiento de IndicadoresPorPais *@
+            @if (Model.MensajeError.Contains("el único país que cumple"))
+            {
+                <a asp-controller="IndicadorPorPais" asp-action="Index" class="alert-link">Agregar más indicadores</a>
+            }
+        </div>
+    }
+    else if (Model.ResultadoRanking != null && Model.ResultadoRanking.Any())
+    {
+        <h4>Resultados del Ranking</h4>
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>País</th>
+                    <th>Codigo Iso</th>
+                    <th>Scoring</th>
+                    <th>Tasa de Retorno (%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var r in Model.ResultadoRanking)
+                {
+                    <tr>
+                        <td>@r.Pais</td>
+                        <td>@r.CodigoIso</td>
+                        <td>@r.Scoring.ToString("0.####")</td>
+                        <td>@r.TasaEstimacion.ToString("0.##")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

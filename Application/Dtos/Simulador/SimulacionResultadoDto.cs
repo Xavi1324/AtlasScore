@@ -8,7 +8,9 @@ namespace Application.Dtos.Simulador
 {
     public class SimulacionResultadoDto
     {
+        public int PaisId { get; set; }        
         public string Pais { get; set; } = string.Empty;
+        public string CodigoIso { get; set; } = string.Empty;
         public decimal Scoring { get; set; }
         public decimal TasaEstimacion { get; set; }
     }

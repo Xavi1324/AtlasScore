@@ -1,0 +1,17 @@
+﻿@model EliminarMacroindicadorSimulacionViewModel
+@{
+    ViewData["Title"] = "Eliminar Macro de Simulación";
+}
+
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+    <h4>¿Estás seguro de eliminar el macro <strong>@Model.NombreMacroindicador</strong> de la simulación?</h4>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        </div>
+    </form>
+</div>

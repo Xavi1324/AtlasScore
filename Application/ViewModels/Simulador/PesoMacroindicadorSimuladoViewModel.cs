@@ -9,15 +9,12 @@ namespace Application.ViewModels.Simulador
 {
     public class PesoMacroindicadorSimuladoViewModel
     {
+        public int Id { get; set; }
         public int MacroindicadorId { get; set; }
-
-        [Required]
-        [Display(Name = "Macroindicador")]
         public string Nombre { get; set; } = string.Empty;
 
-        [Range(0.0, 1.0, ErrorMessage = "El peso debe estar entre 0 y 1.")]
+        [Range(0, 1, ErrorMessage = "El peso debe estar entre 0 y 1.")]
         public decimal Peso { get; set; }
-
-        public bool EsMejorMasAlto { get; set; } // Necesario para el cálculo
+        public bool EsMejorMasAlto { get; set; }
     }
 }

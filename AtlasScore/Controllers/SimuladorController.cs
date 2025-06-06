@@ -8,103 +8,223 @@ namespace AtlasScore.Controllers
 {
     public class SimuladorController : Controller
     {
-        private readonly IMacroindicadorService _macroService;
-        private readonly IIndicadorPorPaisService _indicadorService;
-        private readonly ITasaRetornoService _tasaService;
-        private readonly IPaisService _paisService;
+        private readonly ISimulacionMacroindicadorService _service;
 
-        public SimuladorController(IMacroindicadorService macroService, IIndicadorPorPaisService indicadorService, ITasaRetornoService tasaService, IPaisService paisService)
+        public SimuladorController(ISimulacionMacroindicadorService service)
         {
-            _macroService = macroService;
-            _indicadorService = indicadorService;
-            _tasaService = tasaService;
-            _paisService = paisService;
+            _service = service;
+
         }
         [HttpGet]
-        public async Task<IActionResult> Simulacion()
+        public async Task<IActionResult> Index()
         {
-            var macros = await _macroService.GetAllAsync();
-            var tasa = await _tasaService.GetAsync();
+            // 1. Levantar todos los pesos simulados actuales
+            var macroDtos = await _service.GetAllAsync();
+            // 2. Levantar lista de años disponibles
+            var años = await _service.GetAñosDisponiblesAsync();
+            // 3. Calcular suma de pesos actuales
+            var sumaPesos = await _service.ObtenerSumaDePesosAsync();
 
-            var viewModel = new SimuladorViewModel
+            // 4. Mapear a ViewModel
+            var viewModel = new SimulacionIndexViewModel
             {
-                PesosSimulados = macros.Select(m => new PesoMacroindicadorSimuladoViewModel
+                Macroindicadores = macroDtos.Select(m => new PesoMacroindicadorSimuladoViewModel
                 {
-                    MacroindicadorId = m.Id,
+                    Id = m.Id,
+                    MacroindicadorId = m.MacroindicadorId,
                     Nombre = m.Nombre,
-                    Peso = 0, // por defecto
+                    Peso = m.Peso,
                     EsMejorMasAlto = m.EsMejorMasAlto
                 }).ToList(),
-                TasaMinima = tasa?.TasaMinima,
-                TasaMaxima = tasa?.TasaMaxima
+
+                AñosDisponibles = años.Select(a => new AñoDisponibleViewModel { Año = a.Año }).ToList(),
+
+                // Selecciono por defecto el primero (más reciente)
+                AñoSeleccionado = años.Any() ? años.First().Año : 0,
+
+                SumaPesos = sumaPesos
+            };
+
+            return View(viewModel);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            // 1. Validar que la suma de pesos actual sea < 1
+            var sumaPesos = await _service.ObtenerSumaDePesosAsync();
+            if (sumaPesos >= 1m)
+            {
+                TempData["Error"] = "No se pueden agregar más macroindicadores porque la suma de pesos ya es 1.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            // 2. Obtener macros disponibles (no agregados aún)
+            var macrosDisp = await _service.GetMacroindicadoresDisponiblesAsync();
+            if (!macrosDisp.Any())
+            {
+                TempData["Error"] = "No hay macroindicadores disponibles para agregar.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            // 3. Preparar ViewModel
+            var viewModel = new CrearMacroindicadorSimulacionViewModel
+            {
+                MacroindicadoresDisponibles = macrosDisp
+                    .Select(m => new MacroindicadorDisponibleViewModel { Id = m.Id, Nombre = m.Nombre })
+                    .ToList()
             };
 
             return View(viewModel);
         }
         [HttpPost]
-        public async Task<IActionResult> Simulacion(SimuladorViewModel vm)
+        public async Task<IActionResult> Create(CrearMacroindicadorSimulacionViewModel vm)
         {
-            var sumaPesos = vm.PesosSimulados.Sum(p => p.Peso);
-            if (Math.Abs(sumaPesos - 1m) > 0.0001m)
-            {
-                ModelState.AddModelError(string.Empty, "La suma de los pesos debe ser exactamente 1.");
-            }
-
             if (!ModelState.IsValid)
             {
-                var tasa = await _tasaService.GetAsync();
-                vm.TasaMinima = tasa?.TasaMinima;
-                vm.TasaMaxima = tasa?.TasaMaxima;
+                // Si falla validación del ViewModel, recargar dropdown
+                vm.MacroindicadoresDisponibles = (await _service.GetMacroindicadoresDisponiblesAsync())
+                    .Select(m => new MacroindicadorDisponibleViewModel { Id = m.Id, Nombre = m.Nombre })
+                    .ToList();
                 return View(vm);
             }
 
-            var indicadores = await _indicadorService.GetAllAsync();
-            var macros = await _macroService.GetAllAsync();
-            var paises = await _paisService.GetAllAsync();
-            var tasaRetorno = await _tasaService.GetAsync();
-
-            var pesos = vm.PesosSimulados.Select(p => new PesoMacroindicadorSimuladoDto
+            try
             {
-                MacroindicadorId = p.MacroindicadorId,
-                Peso = p.Peso
-            }).ToList();
-
-            var calculadora = new RankingCalculator();
-
-            var resultado = calculadora.CalcularRanking(
-                indicadores: indicadores.Select(x => new Persistence.Entities.IndicadorPorPais
+                // Crear en base de datos
+                await _service.CreateAsync(new PesoMacroindicadorSimuladoDto
                 {
-                    Id = x.Id,
-                    PaisId = x.PaisId,
-                    MacroindicadorId = x.MacroindicadorId,
-                    Año = x.Año,
-                    Valor = x.Valor
-                }),
-                pesosSimulados: pesos,
-                macroindicadores: macros.Select(m => new Persistence.Entities.Macroindicador
+                    MacroindicadorId = vm.MacroindicadorId,
+                    Peso = vm.Peso
+                });
+                return RedirectToAction(nameof(Index));
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                vm.MacroindicadoresDisponibles = (await _service.GetMacroindicadoresDisponiblesAsync())
+                    .Select(m => new MacroindicadorDisponibleViewModel { Id = m.Id, Nombre = m.Nombre })
+                    .ToList();
+                return View(vm);
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var dto = await _service.GetByIdAsync(id);
+            if (dto == null) return RedirectToAction(nameof(Index));
+
+            var viewModel = new EditarMacroindicadorSimulacionViewModel
+            {
+                Id = dto.Id,
+                Peso = dto.Peso,
+                NombreMacroindicador = dto.Nombre
+            };
+
+            return View(viewModel);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditarMacroindicadorSimulacionViewModel vm)
+        {
+            if (!ModelState.IsValid)
+            {
+                // Recuperar nombre nuevamente (para mostrarlo si el modelo no es válido)
+                var dto = await _service.GetByIdAsync(vm.Id);
+                vm.NombreMacroindicador = dto?.Nombre ?? string.Empty;
+                return View(vm);
+            }
+
+            try
+            {
+                // Llamada al servicio para actualizar
+                await _service.UpdateAsync(new PesoMacroindicadorSimuladoDto
+                {
+                    Id = vm.Id,
+                    // Sacar MacroindicadorId de la base
+                    MacroindicadorId = (await _service.GetByIdAsync(vm.Id))?.MacroindicadorId ?? 0,
+                    Peso = vm.Peso
+                });
+                return RedirectToAction(nameof(Index));
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                var dto = await _service.GetByIdAsync(vm.Id);
+                vm.NombreMacroindicador = dto?.Nombre ?? string.Empty;
+                return View(vm);
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var dto = await _service.GetByIdAsync(id);
+            if (dto == null) return RedirectToAction(nameof(Index));
+
+            var viewModel = new EliminarMacroindicadorSimulacionViewModel
+            {
+                Id = dto.Id,
+                NombreMacroindicador = dto.Nombre
+            };
+
+            return View(viewModel);
+        }
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            await _service.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        public async Task<IActionResult> SimularRanking(SimulacionIndexViewModel vm)
+        {
+            // 1) Llamar al servicio con el año recibido
+            var (resultado, mensajeError) = await _service.GenerarRankingAsync(vm.AñoSeleccionado);
+
+            // 2) Reconstruir el ViewModel para volver a la vista Index
+            var macroDtos = await _service.GetAllAsync();
+            var años = await _service.GetAñosDisponiblesAsync();
+            var sumaPesos = await _service.ObtenerSumaDePesosAsync();
+            int año = vm.AñoSeleccionado;
+
+            var viewModel = new SimulacionIndexViewModel
+            {
+                Macroindicadores = macroDtos.Select(m => new PesoMacroindicadorSimuladoViewModel
                 {
                     Id = m.Id,
+                    MacroindicadorId = m.MacroindicadorId,
                     Nombre = m.Nombre,
                     Peso = m.Peso,
                     EsMejorMasAlto = m.EsMejorMasAlto
-                }),
-                paises: paises.Select(p => new Persistence.Entities.Pais
+                }).ToList(),
+
+                AñosDisponibles = años.Select(a => new AñoDisponibleViewModel
                 {
-                    Id = p.Id,
-                    Nombre = p.Nombre
-                }),
-                tasaMinima: tasaRetorno?.TasaMinima ?? 0,
-                tasaMaxima: tasaRetorno?.TasaMaxima ?? 1
-            );
+                    Año = a.Año
+                }).ToList(),
 
-            vm.Resultados = resultado.Select(r => new ResultadoSimuladoViewModel
-            {
-                Pais = r.Pais,
-                Scoring = r.Scoring,
-                TasaEstimacion = r.TasaEstimacion
-            }).ToList();
+                // Aquí guardamos el año que llegó
+                AñoSeleccionado = año,
+                SumaPesos = sumaPesos,
+                MensajeError = mensajeError,
 
-            return View(vm);
+                ResultadoRanking = resultado?
+                    .Select(r => new SimulacionResultadoViewModel
+                    {
+                        Pais = r.Pais,
+                        CodigoIso = r.CodigoIso,
+                        Scoring = r.Scoring,
+                        TasaEstimacion = r.TasaEstimacion
+                    })
+                    .ToList()
+            };
+
+            return View("Index", viewModel);
         }
+
+
+
+
+
+
+
     }
 }

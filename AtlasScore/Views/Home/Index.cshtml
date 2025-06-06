@@ -1,5 +1,70 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model HomeIndexViewModel
+@{
+    ViewData["Title"] = "Invest Atlas";
 }
 
+<div class="container mt-4"> 
+    <h2>Ranking Oficial</h2>
 
+    <form asp-action="CalcularRanking" method="post" class="row g-3 mb-4">
+        <div class="col-md-3">
+            <label asp-for="Año" class="form-label">Año</label>
+            @if (Model.AñosDisponibles.Any())
+            {
+                <select asp-for="Año" class="form-select">
+                    @foreach (var a in Model.AñosDisponibles)
+                    {
+                        <option value="@a.Año">@a.Año</option>
+                    }
+                </select>
+            }
+            else
+            {
+                <p class="text-danger">No hay datos disponibles para generar el ranking.</p>
+            }
+        </div>
+        <div class="col-md-2 align-self-end">
+            <button type="submit" class="btn btn-success" disabled="@(!Model.AñosDisponibles.Any())">Calcular</button>
+        </div>
+    </form>
+    @if (!string.IsNullOrEmpty(ViewBag.MensajeError))
+    {
+        <div class="alert alert-warning">
+            @ViewBag.MensajeError
+            @if (ViewBag.MacroIndicatorLink != null)
+            {
+                <a href="@ViewBag.MacroIndicatorLink" class="alert-link">Ajustar macroindicadores</a>
+            }
+            @if (ViewBag.IndicatorLink != null)
+            {
+                <a href="@ViewBag.IndicatorLink" class="alert-link">Agregar indicadores</a>
+            }
+        </div>
+    }
+
+    @if (Model.Resultados.Any())
+    {
+        <h4>Resultado del año @Model.Año</h4>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>País</th>
+                    <th>Código ISO</th>
+                    <th>Scoring</th>
+                    <th>Tasa Estimada</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var r in Model.Resultados)
+                {
+                    <tr>
+                        <td>@r.Pais</td>
+                        <td>@r.CodigoIso</td>
+                        <td>@r.Scoring.ToString("0.####")</td>
+                        <td>@r.TasaEstimacion.ToString("0.##")%</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
