@@ -32,7 +32,7 @@ namespace Application.Services
             _repoTasa             = repoTasa;
         }
 
-        #region ───── CRUD (IBaseServices<PesoMacroindicadorSimuladoDto>) ─────
+        
 
         public async Task CreateAsync(PesoMacroindicadorSimuladoDto dto)
         {
@@ -104,7 +104,7 @@ namespace Application.Services
             await _repoSimulacion.EditAsync(entity);
         }
 
-        #endregion
+        
 
         #region ───── Validación de Pesos (IPesoValidacionService) ─────
 
