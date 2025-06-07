@@ -123,14 +123,18 @@ namespace Application.Services
                 MacroindicadorId = m.Id,
                 Peso = m.Peso
             }).ToList();
+            var tasa = (await _tasaRepo.GetAllAsync()).FirstOrDefault();
+            decimal tasaMin = (tasa?.TasaMinima > 0 ? tasa.TasaMinima : 0.02m);
+            decimal tasaMax = (tasa?.TasaMaxima > 0 ? tasa.TasaMaxima : 0.15m);
+
 
             var resultado = _rankingCalculator.CalcularRanking(
                 indicadores: indicadoresFiltrados,
                 pesosSimulados: pesosSimulados,
                 macroindicadores: macros,
                 paises: paisesElegibles,
-                tasaMinima: 0.02m,
-                tasaMaxima: 0.15m
+                tasaMinima: tasaMin,
+                tasaMaxima: tasaMax
             );
 
             foreach (var r in resultado)
