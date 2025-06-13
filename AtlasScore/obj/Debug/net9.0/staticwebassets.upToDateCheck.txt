@@ -32,6 +32,8 @@ C:\Proyecto\AtlasScore\AtlasScore\wwwroot\lib\jquery\LICENSE.txt
 C:\Proyecto\AtlasScore\AtlasScore\wwwroot\lib\bootstrap\dist\css\bootstrap.css
 C:\Proyecto\AtlasScore\AtlasScore\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
 C:\Proyecto\AtlasScore\AtlasScore\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+C:\Proyecto\AtlasScore\AtlasScore\wwwroot\css\home.css
+C:\Proyecto\AtlasScore\AtlasScore\wwwroot\css\indicadores.css
 C:\Proyecto\AtlasScore\AtlasScore\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
 C:\Proyecto\AtlasScore\AtlasScore\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
 C:\Proyecto\AtlasScore\AtlasScore\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
@@ -40,6 +42,7 @@ C:\Proyecto\AtlasScore\AtlasScore\wwwroot\lib\bootstrap\dist\css\bootstrap-utili
 C:\Proyecto\AtlasScore\AtlasScore\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
 C:\Proyecto\AtlasScore\AtlasScore\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
 C:\Proyecto\AtlasScore\AtlasScore\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+C:\Proyecto\AtlasScore\AtlasScore\wwwroot\css\navbar.css
 C:\Proyecto\AtlasScore\AtlasScore\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
 C:\Proyecto\AtlasScore\AtlasScore\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
 C:\Proyecto\AtlasScore\AtlasScore\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
@@ -60,6 +63,9 @@ C:\Proyecto\AtlasScore\AtlasScore\wwwroot\lib\bootstrap\dist\js\bootstrap.js
 C:\Proyecto\AtlasScore\AtlasScore\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
 C:\Proyecto\AtlasScore\AtlasScore\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
 C:\Proyecto\AtlasScore\AtlasScore\wwwroot\lib\jquery-validation\dist\additional-methods.js
+wwwroot\css\home.css
+wwwroot\css\indicadores.css
+wwwroot\css\navbar.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\js\site.js

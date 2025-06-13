@@ -217,7 +217,6 @@ C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\compressed\6dn4lzwsit-c2jlpeo
 C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\compressed\szii79n5x9-t1cqhe9u97.gz
 C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\compressed\w2j5bwidjv-xtxxf3hu2r.gz
 C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\compressed\2yu397t2ze-61n19gt1b8.gz
-C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\compressed\x1r71huj64-b9sayid5wm.gz
 C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\compressed\h4v3o5uitm-6fd70bo4la.gz
 C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\compressed\ev88zz7yes-6fd70bo4la.gz
 C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\staticwebassets.build.json
@@ -231,3 +230,11 @@ C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\refint\AtlasScore.dll
 C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\AtlasScore.pdb
 C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\AtlasScore.genruntimeconfig.cache
 C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\ref\AtlasScore.dll
+C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\compressed\x1r71huj64-ktkj6bz9j4.gz
+C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\compressed\oigh95f0w1-yxsl84ttrz.gz
+C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\compressed\jwb7n0mn9f-wttgqf7t0j.gz
+C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\compressed\kxkjiyz2ge-756wqz0bs5.gz
+C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\rjimswa.dswa.cache.json
+C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+C:\Proyecto\AtlasScore\AtlasScore\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
